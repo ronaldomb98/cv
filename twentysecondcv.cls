@@ -350,10 +350,10 @@
         \aboutmesidebar
                 \vspace{4mm}  
         \break
-      
-        \profilesection{Acerca de mi}{2cm} 
-        \break
-        \aboutmesidebar
+       
+	 {\large \textbf{Intereses}} 
+
+		 \interest
       
   \end{textblock}
 }
@@ -515,4 +515,18 @@
     %------------------------------------------------
     
     {\Large\color{black!80}\cvjobtitle}
+}
+
+% Command for printing interest bars
+\newcommand\interest[1]{ 
+	\renewcommand{\interest}{
+		\begin{tikzpicture}
+        	%\node [above right] at (0, 4) {$0 \: LOC \: \arrow{3.2} \: 5000 \: LOC$};
+			\foreach [count=\i] \x/\y in {#1}{
+				\draw[fill=maingray,maingray] (0,\i) rectangle (6,\i+0.4);
+				\draw[fill=white,mainblue](0,\i) rectangle (\y,\i+0.4);
+				\node [above right] at (0,\i+0.35) {\x};
+			}
+		\end{tikzpicture}
+	}
 }
