@@ -91,6 +91,7 @@
 \definecolor{materialred}{HTML}{FF4436}
 \definecolor{materialorange}{HTML}{FF5722}
 \definecolor{linkedin}{HTML}{0085AE}
+\definecolor{facebook}{HTML}{045FB4}
 \definecolor{test}{HTML}{0077be}
 \definecolor{yt}{HTML}{c71610}
 
@@ -144,6 +145,7 @@
 \newcommand{\cvgithub}[1]{\renewcommand{\cvgithub}{#1}}
 \newcommand{\cvmail}[1]{\renewcommand{\cvmail}{#1}}
 \newcommand{\cvnumberphone}[1]{\renewcommand{\cvnumberphone}{#1}}
+\newcommand{\cvphone}[1]{\renewcommand{\cvphone}{#1}}
 \newcommand{\cvaddress}[1]{\renewcommand{\cvaddress}{#1}}
 \newcommand{\cvsite}[1]{\renewcommand{\cvsite}{#1}}
 \newcommand{\aboutme}[1]{\renewcommand{\aboutme}{#1}}
@@ -151,6 +153,8 @@
 \newcommand{\cvname}[1]{\renewcommand{\cvname}{#1}}
 \newcommand{\cvjobtitle}[1]{\renewcommand{\cvjobtitle}{#1}}
 
+%custom contact items
+\newcommand{\cvfacebook}[1]{\renewcommand{\cvfacebook}{#1}}
 % Command for printing the contact information icons
 \newcommand*\icon[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt, fill=mainblue,mainblue,text=white] (char) {#1};}}
 
@@ -184,24 +188,7 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\makeprofile}{
-  \begin{tikzpicture}[remember picture,overlay]
-      \node [rectangle, fill=sidecolor, anchor=north, minimum width=9cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
-  \end{tikzpicture}
-
-  %------------------------------------------------
-
-  \begin{textblock}{6}(0.5, 0.2)
-
-    %------------------------------------------------
-    
-        \vspace{4mm}
-    {\Huge\color{pblue}\cvname}
-    
-    \vspace{2mm}
-
-    %------------------------------------------------
-    
-    {\Large\color{black!80}\cvjobtitle}
+\makemyprofile
 
     %------------------------------------------------
     
@@ -215,6 +202,13 @@
               \end{array}
               $} 
             & \cvnumberphone\\}
+      \ifthenelse{\equal{\cvphone}{}}{}{
+      		{$
+              \begin{array}{l}
+              \hspace{4mm} \Huge \textnormal{\faPhone} 
+              \end{array}
+              $} 
+            & \cvphone\\}
             
       \ifthenelse{\equal{\cvsite}{}}{}{
             {$
@@ -245,6 +239,13 @@
               \end{array}
               $} & \href{https://www.github.com/\cvgithub}{\cvgithub} \\
             }   
+        \ifthenelse{\equal{\cvfacebook}{}}{}{
+            {$
+              \begin{array}{l}
+              \hspace{3mm} \huge \textnormal{\textcolor{facebook}{\faFacebook}}
+              \end{array}
+              $} & \href{https://www.facebook.com/\cvfacebook}{\cvfacebook} \\
+            } 
             
     \end{tabular}
 
@@ -275,33 +276,7 @@
   \end{textblock}
 }
 \newcommand{\makepersonalinfo}{
-
-
-  \begin{tikzpicture}[remember picture,overlay]
-      \node [rectangle, fill=sidecolor, anchor=north, minimum width=9cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
-  \end{tikzpicture}
-
-  %------------------- Photo -----------------------------
-
-  \begin{textblock}{6}(0.5, 0.2)
-  \begin{center}
-  \resizebox{3.5cm}{3.5cm}{
-    \begin{tikzpicture}
-      \node[circle,draw,inner sep=1cm,fill overzoom image=./img/mainphoto.jpg] (A) {};
-    \end{tikzpicture}
-  }  
-  \end{center}
-
-    %------------------------------------------------
-    
-        \vspace{4mm}
-    {\huge\color{pblue}\cvname}
-    
-    \vspace{2mm}
-
-    %------------------------------------------------
-    
-    {\Large\color{black!80}\cvjobtitle}
+	\makemyprofile
 
     %---------------- Contact --------------------------------
 
@@ -317,6 +292,14 @@
               \end{array}
               $} 
             & \cvnumberphone\\}
+
+      \ifthenelse{\equal{\cvphone}{}}{}{
+      		{$
+              \begin{array}{l}
+              \hspace{4mm} \Huge \textnormal{\faPhone} 
+              \end{array}
+              $} 
+            & \cvphone\\}
             
       \ifthenelse{\equal{\cvsite}{}}{}{
             {$
@@ -347,6 +330,13 @@
               \end{array}
               $} & \href{https://www.github.com/\cvgithub}{\cvgithub} \\
             }   
+        \ifthenelse{\equal{\cvfacebook}{}}{}{
+            {$
+              \begin{array}{l}
+              \hspace{3mm} \huge \textnormal{\textcolor{facebook}{\faFacebook}}
+              \end{array}
+              $} & \href{https://www.facebook.com/\cvfacebook}{\cvfacebook} \\
+            }
             
     \end{tabular}
 
@@ -358,7 +348,20 @@
         \profilesection{Acerca de mi}{2cm} 
         \break
         \aboutmesidebar
+                \vspace{4mm}  
+        \break
       
+        \profilesection{Acerca de mi}{2cm} 
+        \break
+        \aboutmesidebar
+      
+  \end{textblock}
+}
+
+\newcommand{\makeabilities}{
+
+\makemyprofile
+
   \end{textblock}
 }
 
@@ -483,3 +486,33 @@
 \newcommand{\ColonSep}{\makebox[0.2cm][l]{:}}%
 \newcommand{\LeftBox}[2]{\par\noindent\makebox[4.5cm][l]{\textbf{\small{#1}}}\ColonSep\makebox[3.5cm][l]{\small{#2}}}%
 \newcommand{\LeftBoxWthoutSep}[2]{\par\noindent\makebox[4.5cm][l]{\textbf{\small{#1}}}\makebox[3.5cm][l]{\small{#2}}}%
+
+\newcommand{\makemyprofile}{
+
+
+  \begin{tikzpicture}[remember picture,overlay]
+      \node [rectangle, fill=sidecolor, anchor=north, minimum width=9cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
+  \end{tikzpicture}
+
+  %------------------- Photo -----------------------------
+
+  \begin{textblock}{6}(0.5, 0.2)
+  \begin{center}
+  \resizebox{3.5cm}{3.5cm}{
+    \begin{tikzpicture}
+      \node[circle,draw,inner sep=1cm,fill overzoom image=./img/mainphoto.jpg] (A) {};
+    \end{tikzpicture}
+  }  
+  \end{center}
+
+    %------------------------------------------------
+    
+        \vspace{4mm}
+    {\huge\color{pblue}\cvname}
+    
+    \vspace{2mm}
+
+    %------------------------------------------------
+    
+    {\Large\color{black!80}\cvjobtitle}
+}
