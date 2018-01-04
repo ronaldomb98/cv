@@ -361,7 +361,21 @@
 \newcommand{\makeabilities}{
 
 \makemyprofile
+    %------------------------------------------------
+	\vspace{4mm}	
+	\break    
+    \profilesection{Habilidades}{2cm}
+    
+    {\large \textbf{Resumen}}
 
+	\skills
+  \end{textblock}
+  
+  
+}
+
+\newcommand{\makesidebarcommon}{
+\makemyprofile
   \end{textblock}
 }
 
